@@ -205,12 +205,16 @@
             
             <div class="work-grid">
                 <div class="work-card animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1762430815620-fcca603c240c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydW53YXklMjBmYXNoaW9uJTIwc2hvd3xlbnwxfHx8fDE3NzA3MzA4Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="India Fashion Week">
+                    <!-- <img src="https://images.unsplash.com/photo-1762430815620-fcca603c240c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydW53YXklMjBmYXNoaW9uJTIwc2hvd3xlbnwxfHx8fDE3NzA3MzA4Mjh8MA
+                    &ixlib=rb-4.1.0&q=80&w=1080" alt="India Fashion Week"> -->
+                    <video autoplay muted loop playsinline preload="auto" >
+                        <source src="/videos/vismay_brand_2026.MOV" type="video/mp4">
+                    </video>
                     <div class="work-overlay"></div>
                     <div class="work-content">
-                        <p class="work-year">2025</p>
-                        <h3>India Fashion Week</h3>
-                        <p class="work-role">Show Choreographer</p>
+                        <p class="work-year">2026</p>
+                        <h3>Threads Fashion Week</h3>
+                        <p class="work-role">Show Director</p>
                         <div class="work-line"></div>
                     </div>
                 </div>
@@ -238,12 +242,15 @@
                 </div>
                 
                 <div class="work-card animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1760022638435-aad7c1e684b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwc3R5bGluZyUyMGJhY2tzdGFnZXxlbnwxfHx8fDE3NzA3NDg4Njh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Mumbai Fashion Week">
+                    <!-- <img src="https://images.unsplash.com/photo-1760022638435-aad7c1e684b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwc3R5bGluZyUyMGJhY2tzdGFnZXxlbnwxfHx8fDE3NzA3NDg4Njh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Mumbai Fashion Week"> -->
+                    <video autoplay muted loop playsinline preload="auto" >
+                        <source src="/videos/lulu_2025.MOV" type="video/mp4">
+                    </video>
                     <div class="work-overlay"></div>
                     <div class="work-content">
-                        <p class="work-year">2023</p>
-                        <h3>Mumbai Fashion Week</h3>
-                        <p class="work-role">Runway Choreographer</p>
+                        <p class="work-year">2025</p>
+                        <h3>Lulu Beauty Fest</h3>
+                        <p class="work-role">Backstage Director</p>
                         <div class="work-line"></div>
                     </div>
                 </div>
@@ -353,6 +360,11 @@
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
@@ -418,5 +430,29 @@
     </section>
 
     <script src="script.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        (function(){
+        emailjs.init("fCy8scuOm4bpgZ9uw"); // Account → General
+        })();
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm(
+            "service_jlh2yfh",   // Email Services
+            "template_cyi5gs9",  // Email Template
+            this
+        )
+        .then(function() {
+            alert("✅ Message sent successfully!");
+        }, function(error) {
+            alert("❌ Failed to send message");
+            console.log(error);
+        });
+        });
+    </script>
 </body>
 </html>

@@ -456,15 +456,19 @@ button {
     cursor: pointer;
 }
 
-.work-card img {
+.work-card img,
+.work-card video {
     width: 100%;
     aspect-ratio: 4/5;
     object-fit: cover;
     filter: grayscale(100%);
     transition: all 0.7s ease;
+    object-fit: cover !important; 
+    image-rendering: auto; 
 }
 
-.work-card:hover img {
+.work-card:hover img,
+.work-card:hover video {
     filter: grayscale(0%);
     transform: scale(1.1);
 }
