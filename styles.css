@@ -185,12 +185,10 @@ button {
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .animate-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
+    animation: fadeInUp 0.9s cubic-bezier(.2,.9,.2,1) both;
 }
 
 /* ============================================
@@ -471,7 +469,8 @@ button {
     aspect-ratio: 4/5;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: all 0.7s ease;
+    /* only animate filter/transform/opacity for smoother B&W→color transition */
+    transition: filter 0.6s ease, transform 0.6s ease, opacity 0.6s ease;
     object-fit: cover !important; 
     image-rendering: auto; 
 }
@@ -896,6 +895,82 @@ button {
         grid-template-columns: 1fr;
         gap: 3rem;
         margin-bottom: 5rem;
+    }
+}
+
+/* Mobile / touch devices: apply hover-like effects when element becomes visible on scroll
+   Uses the existing .visible class added by the IntersectionObserver (animate-on-scroll)
+*/
+@media (hover: none), (max-width: 768px) {
+    /* Disable CSS :hover visual changes on touch devices (prevent accidental differences) */
+    .service-card:hover,
+    .work-card:hover,
+    .gallery-item:hover,
+    .logo-item:hover,
+    .brand-item:hover,
+    .contact-method:hover {
+        /* noop so desktop :hover remains, touch devices rely on .visible */
+        transform: none;
+        border-color: inherit;
+        color: inherit;
+    }
+
+    /* Service cards — apply same visuals as :hover when in view */
+    .service-card.visible {
+        border-color: rgba(201, 162, 77, 0.5);
+        transform: translateY(-5px);
+    }
+    .service-card.visible .service-icon {
+        background-color: rgba(201, 162, 77, 0.1);
+    }
+    .service-card.visible .service-line {
+        width: 6rem;
+    }
+
+    /* Work cards */
+    .work-card.visible img,
+    .work-card.visible video {
+        filter: grayscale(0%);
+        transform: scale(1.08);
+    }
+    .work-card.visible .work-overlay {
+        opacity: 0.9;
+    }
+    .work-card.visible .work-content {
+        transform: translateY(0);
+    }
+    .work-card.visible .work-line {
+        opacity: 1;
+        width: 6rem;
+    }
+
+    /* Gallery items */
+    .gallery-item.visible img {
+        filter: grayscale(0%);
+        transform: scale(1.05);
+    }
+    .gallery-item.visible .gallery-overlay {
+        opacity: 1;
+    }
+    .gallery-item.visible .gallery-overlay p {
+        transform: translateY(0);
+    }
+
+    /* Logos */
+    .logo-item.visible {
+        transform: scale(1.03);
+    }
+    .logo-item.visible img {
+        filter: none;
+        opacity: 1;
+    }
+
+    /* Contact methods highlight */
+    .contact-method.visible {
+        color: #C9A24D;
+    }
+    .contact-method.visible .contact-icon {
+        border-color: #C9A24D;
     }
 }
 
