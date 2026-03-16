@@ -219,6 +219,18 @@ function removeLoader() {
     }
 }
 
+// Add loading class while assets are loading
+document.documentElement.classList.add('js-enabled');
+document.body.classList.add('loading');
+
+window.addEventListener('load', () => {
+    // Wait a short moment to let visual finish, then remove loader
+    setTimeout(() => {
+        removeLoader();
+        document.body.classList.remove('loading');
+    }, 500);
+});
+
 // ============================================
 // PREVENT LAYOUT SHIFT
 // ============================================
